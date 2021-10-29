@@ -4,9 +4,6 @@ const path = require("path");
 const share = mf.share;
 
 const sharedMappings = new mf.SharedMappings();
-sharedMappings.register(path.join(__dirname, "./tsconfig.json"), [
-  "@common/utilities",
-]);
 
 module.exports = {
   output: {
@@ -26,10 +23,8 @@ module.exports = {
       name: 'shell',
       filename: 'remoteEntry.js',
       exposes: {
-        './Utilities': './src/app/utilities',
+        './Utilities': './src/app/utilities.service.ts',
       },
-        
-
       shared: share({
         "@angular/core": {
           singleton: true,
@@ -51,11 +46,8 @@ module.exports = {
           strictVersion: true,
           requiredVersion: "auto",
         },
-        './Utilities': './src/app/utilities',
+        //'./Utilities': './src/app/utilities',
         // "rxjs": { singleton: true, strictVersion: true, requiredVersion: 'auto'},
-        // "@common/utilities": {
-        //   import: "src/app/utilities",
-        // },
         ...sharedMappings.getDescriptors(),
       }),
     }),

@@ -7,4 +7,8 @@ export class UtilitiesService {
 
   foo = 'testing';
   constructor() { }
+
+  getFoo(): string {
+    return this.foo;
+  }
 }
